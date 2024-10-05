@@ -181,7 +181,7 @@ h6 {
 .form-component form select,
 .form-component form textarea {
   flex: 1;
-  font-size: 24px;
+  font-size: 17px;
   padding: 10px 10px 10px 40px;
   border-radius: 7px;
   border: 1px solid gray;
@@ -193,7 +193,7 @@ h6 {
   width: fit-content;
   border: none;
   border-radius: 8px;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 30px;
   background: linear-gradient(140deg, #9083d5, #271776ca);
 }
@@ -408,7 +408,7 @@ footer .content div:last-child div svg {
 .card img {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 60%;
   z-index: -1;
   top: 0;
   left: 0;
