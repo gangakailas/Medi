@@ -1,9 +1,11 @@
 import React from 'react'
 
+
 const Departments = () => {
   return (
-    <div>
-        
+    <div className='container departments'>
+        <h2>Departments</h2>
+
     </div>
   )
 }
