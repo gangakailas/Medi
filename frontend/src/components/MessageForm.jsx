@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import axios from "axios";
 
 const MessageForm = () => {
     const [firstName, setFirstName] = useState("")
@@ -7,8 +8,30 @@ const MessageForm = () => {
     const [phone, setPhone] = useState("")
     const [message, setMessage] = useState("")
     const handleMessage = (e) => {
-        e.preventDefault()
-    }
+        e.preventDefault();
+        async function submitForm(){
+            try {
+                await axios.post(
+                    "http://localhost:4000/api/v1/message/send",
+                    {firstName, lastName, phone, email, message}, 
+                    {withCredentials: true,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }).then(res=>{
+                    toast.success(res.data.message); 
+                    setFirstName("")
+                    setLastName("")
+                    setEmail("")
+                    setPhone("")
+                    setMessage("")
+                });
+            } catch (error) {
+                toast.error(error.response.data.message); 
+            }
+        }
+        
+    };
     return (
         <div className='container form-component message-form'>
             <h2>Send Us A Message</h2>
