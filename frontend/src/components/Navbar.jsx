@@ -1,19 +1,30 @@
 import React from 'react'
+import { useContext, useState } from 'react';
 import { Context } from '../main'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
+import axios from "axios"
+import { toast } from "react-toastify"
 
 const Navbar = () => {
-  const [show, setShow] = useStae(false)
-  const {} = useContext(Context)
+  const [show, setShow] = useState(false)
+  const { isAuthenticated, setIsAuthenticated } = useContext(Context)
+ 
+  const navigateTo = useNavigate();
 
-    const handeLogout = async()=>{
-        try {
-            await axios.get("", { withCredentials: true});
-        } catch (error) {
-            
-        }
-    }
-    const gotoLogin = () => {};
+  const handleLogout = async()=>{
+    await axios.get("", { 
+        withCredentials: true,
+    })
+    .then(res=>{
+        toast.success(res.data.message);
+        setIsAuthenticated(false);
+    }).catch(err=>{
+        toast.error(err.response.data.message)
+    });
+  }
+  const gotoLogin = () => {
+    navigateTo("/login");
+  };
 
   return (
     <nav className='container'>
@@ -25,7 +36,7 @@ const Navbar = () => {
                 <Link to={"/online"}>ONLINE CONSULTATION</Link>
             </div>
             {isAuthenticated ? (
-                <button className="logoutBtn btn" onClick={(handleLogout)=>}>
+                <button className="logoutBtn btn" onClick={(handleLogout)}>
                     LOGOUT
                 </button>
             ) : (
@@ -38,4 +49,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;
