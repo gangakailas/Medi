@@ -587,3 +587,76 @@ input[type="time"]:before {
 footer .logo-img{
   width: 100%;
 }
+
+/* Styling for Online Page */
+.online-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  height: 100vh;
+  text-align: center;
+}
+
+.online-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.online-description {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.book-appointment-button, .join-meeting-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: background-color 0.3s ease;
+}
+
+.book-appointment-button:hover, .join-meeting-button:hover {
+  background-color: #218838;
+}
+
+.already-booked-text {
+  font-size: 1rem;
+  color: #555;
+  margin: 20px 0;
+}
+
+.join-meeting-button {
+  background-color: #007bff;
+}
+
+.join-meeting-button:hover {
+  background-color: #0056b3;
+}
+
+/* Existing styles here */
+
+/* Specific styles for the Appointment heading */
+.appointment-title {
+  font-family: inherit;
+  text-align: center; /* Center align the heading */
+  font-size: 36px; /* Set the font size */
+  color: #333; /* Set the text color */
+  margin: 140px 0 10px; /* Add margin above (40px) and below (20px) the heading */
+  text-transform: uppercase; /* Transform text to uppercase */
+  letter-spacing: 1px; /* Add letter spacing */
+  font-weight: bold; /* Make the font bold */
+}
+
+/* Additional styles here if any */
+

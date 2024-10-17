@@ -4,6 +4,7 @@ import { Context } from '../main'
 import { Link , useNavigate} from 'react-router-dom'
 import axios from "axios"
 import { toast } from "react-toastify"
+import {GiHamburgerMenu} from "react-icons/gi"
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
@@ -18,7 +19,7 @@ const Navbar = () => {
     .then(res=>{
         toast.success(res.data.message);
         setIsAuthenticated(false);
-    }).catch(err=>{
+    }).catch((err)=>{
         toast.error(err.response.data.message)
     });
   }
@@ -35,7 +36,7 @@ const Navbar = () => {
                 <Link to={"/appointment"}>BOOK APPOINTMENT</Link>
                 <Link to={"/online"}>ONLINE CONSULTATION</Link>
             </div>
-            {isAuthenticated ? (
+            { isAuthenticated ? (
                 <button className="logoutBtn btn" onClick={(handleLogout)}>
                     LOGOUT
                 </button>
@@ -44,6 +45,9 @@ const Navbar = () => {
                     LOGIN
                 </button>
             )}
+        </div>
+        <div className="hamburger" onClick={()=> setShow(!show)}>
+            <GiHamburgerMenu/>
         </div>
     </nav>
   )
