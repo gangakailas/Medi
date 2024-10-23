@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 import { useEffect, useContext } from 'react';
 import axios from "axios";
 import { Context } from "./main";
@@ -20,7 +21,7 @@ const App = () => {
     const fetchUser = async()=>{
       try {
         const response = await axios.get("", {withCredentials: true});
-        setIsAuthenticated(true);
+        setIsAuthenticated(false);
         setUser(response.data.user);
       } catch (error) {
         setIsAuthenticated(false);
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
         </Routes>
+        <footer/>
         <ToastContainer position="top-center"/>
       </Router>
     </>

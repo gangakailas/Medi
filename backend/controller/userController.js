@@ -54,7 +54,7 @@ export const login = catchAsyncErrors(async(req, res, next)=>{
         return next(new ErrorHandler("Please Provide All Details!", 400));
     }
     if(password !== confirmPassword){
-        return next(new ErrorHandler("The password you've entered is Incorrect!", 400));
+        return next(new ErrorHandler("Password and Confirm Password do not Match!", 400));
     }
     const user = await User.findOne({email}).select("+password");
     if(!user){
@@ -68,4 +68,41 @@ export const login = catchAsyncErrors(async(req, res, next)=>{
         return next(new ErrorHandler("User with this Role not found!", 400)); 
     }
     generateToken(user, "User Logged-In Successfully!", 400, res);
+});
+
+
+export const  addNewAdmin = catchAsyncErrors(async(req, res, next)=>{
+    const {firstName, lastName, email, phone, password, gender, dob, nic} = 
+        req.body;
+    if(
+        ! firstName ||
+        ! lastName ||
+        ! email ||
+        ! phone ||
+        ! password || 
+        ! gender || 
+        ! dob ||
+        ! nic 
+    )   {
+        return next(new ErrorHandler("Please Fill Form Fully!", 400));
+    }
+    const isRegistered = await User.findOne({email});
+    if(isRegistered){
+        return next(new ErrorHandler("Admin with this Email already Registered!"));
+    }
+    const admin = await User.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+      gender,
+      dob,
+      nic,
+      role: "Admin"
+    });
+    res.status(200).json({
+        success: true,
+        message: "New Admin Registered"
+    })
 });
