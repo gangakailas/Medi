@@ -4,7 +4,7 @@ import { Context } from '../main'
 import { Link , useNavigate} from 'react-router-dom'
 import axios from "axios"
 import { toast } from "react-toastify"
-import {GiHamburgerMenu} from "react-icons/gi"
+import {GiHamburgerMenu} from "react-icons/gi";
 
 const Navbar = () => {
   const [show, setShow] = useState(false)
@@ -29,7 +29,10 @@ const Navbar = () => {
 
   return (
     <nav className='container'>
-        <div className="logo">MediConnect</div>
+        <div className="logo">
+            <img src="/logoo.png" alt="logo" className='logo-img'/>
+            <p className="logo-text">MediConnect</p>
+            </div>
         <div className={show ? "navLinks showmenu" : "navLinks"}>
             <div className="links">
                 <Link to={"/"}>HOME</Link>
@@ -52,5 +55,4 @@ const Navbar = () => {
     </nav>
   )
 }
-
 export default Navbar;

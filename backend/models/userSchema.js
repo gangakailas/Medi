@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     maxLength: [5, "NIC Must Contain Exactly 5 Digits!"],
   },
   dob: {
-    type: Date, 
+    type: String, 
     required: [true, "DOB is required"],
   },
   gender: {

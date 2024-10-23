@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.post("/patient/register", patientRegister);
 router.post("/login", login);
+//outer.post("/admin/addnew", addNewAdmin);
 
 export default router;

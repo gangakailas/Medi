@@ -660,3 +660,21 @@ footer .logo-img{
 
 /* Additional styles here if any */
 
+.logo-text {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.logo-img {
+  width: 80px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
