@@ -13,15 +13,17 @@ const Navbar = () => {
   const navigateTo = useNavigate();
 
   const handleLogout = async()=>{
-    await axios.get("", { 
+    await axios
+      .get("http://localhost:4000/api/v1/user/patient/logout", {
         withCredentials: true,
-    })
-    .then(res=>{
+      })
+      .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
-    }).catch((err)=>{
-        toast.error(err.response.data.message)
-    });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
   const gotoLogin = () => {
     navigateTo("/login");
