@@ -1,10 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useContext, useEffect } from 'react';
+import "./App.css"
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import Messages from "./components/Messages";
+import AddNewDoctor from "./components/AddNewDoctor";
+import AddNewAdmin from "./components/AddNewAdmin";
+import Doctors from "./components/Doctors";
+import Sidebar from "./components/Sidebar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Context } from './main';
+import axios from "axios";
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+
+  const {isAuthenticated, setIsAuthenticated, user, setUser} = useContext(Context);
+
+  useEffect(()=>{
+    const fetchUser = async()=>{
+      try {
+        const response = await axios.get("", {withCredentials: true});
+        setIsAuthenticated(true);
+        setUser(response.data.user);
+      } catch (error) {
+        setIsAuthenticated(false);
+        setUser([]);
+      }
+    };
+    fetchUser();
+  }, [isAuthenticated]);
 
   return (
     <>

@@ -10,15 +10,10 @@ import {IoPersonAddSharp} from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify";
-
-
-
 const Sidebar = () => {
   const [show, setShow] = useState(false);
   const {isAuthenticated, setIsAuthenticated} = useContext(Context);
-   
-  const navigate = useNavigate();
-
+  const navigateTo = useNavigate();
   const gotoHome = ()=>{
     navigateTo("/");
     setShow(!show);
@@ -39,7 +34,6 @@ const Sidebar = () => {
     navigateTo("/admin/addnew");
     setShow(!show);
   };
-
   const handleLogout = async()=>{
     await axios
       .get("http://localhost:4000/api/v1/user/admin/logout", {
@@ -53,21 +47,19 @@ const Sidebar = () => {
         toast.error(err.response.data.message);
       });
   };
-
   return (
     <>
     <nav 
-        style={isAuthenticated ? {display: "none"} : {display: "flex"}} 
+        style={!isAuthenticated ? {display: "none"} : {display: "flex"}} 
         className={show ? "show sidebar" : "sidebar"}
     >
-
     <div className="links">
         <TiHome onClick={gotoHome}/>
         <FaUserDoctor onClick={gotoDoctorsPage}/>
         <MdAddModerator onClick={gotoAddNewAdmin}/>
         <IoPersonAddSharp onClick={gotoAddNewDoctor}/>
         <AiFillMessage onClick={gotoMessagepage}/>
-        <RiLogoutBoxFill onCLick={handleLogout}/>
+        <RiLogoutBoxFill onClick={handleLogout}/>
     </div>   
     </nav>
     <div 
@@ -78,7 +70,5 @@ const Sidebar = () => {
     </div>
     </>
   )
-  
 }
-
 export default Sidebar
