@@ -35,17 +35,15 @@ const Sidebar = () => {
     setShow(!show);
   };
   const handleLogout = async()=>{
-    await axios
-      .get("http://localhost:4000/api/v1/user/admin/logout", {
+    await axios.get("http://localhost:4000/api/v1/user/admin/logout", { 
         withCredentials: true,
-      })
-      .then((res) => {
+    })
+    .then(res=>{
         toast.success(res.data.message);
         setIsAuthenticated(false);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
+    }).catch((err)=>{
+        toast.error(err.response.data.message)
+    });
   };
   return (
     <>
