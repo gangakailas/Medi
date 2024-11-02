@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home";
@@ -10,7 +10,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/footer.jsx";
-import { useEffect, useContext } from 'react';
 import axios from "axios";
 import { Context } from "./main";
 
@@ -21,14 +20,14 @@ const App = () => {
     const fetchUser = async()=>{
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/v1/user/admin/me",
+          "http://localhost:4000/api/v1/user/patient/me",
           { withCredentials: true }
         );
         setIsAuthenticated(true);
         setUser(response.data.user);
       } catch (error) {
         setIsAuthenticated(false);
-        setUser([]);
+        setUser({});
       }
     };
     fetchUser();
@@ -48,7 +47,7 @@ const App = () => {
         <ToastContainer position="top-center"/>
       </Router>
     </>
-  )
-}
+  );
+};
 
 export default App
