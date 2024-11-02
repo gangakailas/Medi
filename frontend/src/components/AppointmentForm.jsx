@@ -49,28 +49,29 @@ const AppointmentForm = () => {
         e.preventDefault();
         try {
             const hasVisitedBool = Boolean(hasVisited);
-            const {data} = await axios.post(
-                "", 
-                {
-                    firstName,
-                    lastName,
-                    email,
-                    phone,
-                    nic,
-                    dob,
-                    gender,
-                    appointment_date: appointmentDate,
-                    department,
-                    doctor_firstName: doctorFirstName,
-                    doctor_lastName: doctorLastName,                   
-                    address,
-                    hasVisited: hasVisitedBool,
-                },{
-                    withCredentials: true,
-                    headers:{
-                        "Content-Type": "application/json"
-                    }, 
-                }
+            const { data } = await axios.post(
+              "http://localhost:4000/api/v1/appointment/post",
+              {
+                firstName,
+                lastName,
+                email,
+                phone,
+                nic,
+                dob,
+                gender,
+                appointment_date: appointmentDate,
+                department,
+                doctor_firstName: doctorFirstName,
+                doctor_lastName: doctorLastName,
+                address,
+                hasVisited: hasVisitedBool,
+              },
+              {
+                withCredentials: true,
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
             );
             toast.success(data.message);
         } catch (error) {
