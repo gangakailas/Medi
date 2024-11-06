@@ -22,11 +22,21 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/user/patient/register", 
-        { firstName, lastName, email, phone, nic, dob, gender, password, role: "Patient"}, 
+        "http://34.93.177.210:4000/api/v1/user/patient/register",
         {
-          withCredentials: true, 
-          headers:{"Content-Type": "application/json"},
+          firstName,
+          lastName,
+          email,
+          phone,
+          nic,
+          dob,
+          gender,
+          password,
+          role: "Patient",
+        },
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
         }
       );
       toast.success(response.data.message);
