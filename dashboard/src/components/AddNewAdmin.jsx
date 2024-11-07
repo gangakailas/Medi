@@ -23,7 +23,7 @@ const AddNewAdmin = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://34.47.195.11//api/v1/user/admin/addnew",
+        "http://34.47.195.11/api/v1/user/admin/addnew",
         { firstName, lastName, email, phone, nic, dob, gender, password },
         {
           withCredentials: true,
