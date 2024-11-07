@@ -13,11 +13,11 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/v1/user/login", 
-        {email, password, confirmPassword, role: "Admin"}, 
+        "http://34.47.195.11/api/v1/user/login",
+        { email, password, confirmPassword, role: "Admin" },
         {
-          withCredentials: true, 
-          headers:{"Content-Type": "application/json"},
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
         }
       );
       toast.success(response.data.message);
