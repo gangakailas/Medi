@@ -22,7 +22,7 @@ const App = () => {
     const fetchUser = async()=>{
       try {
         const response = await axios.get(
-          "http://34.47.195.11//api/v1/user/admin/me",
+          "http://34.47.195.11/api/v1/user/admin/me",
           { withCredentials: true }
         );
         setIsAuthenticated(true);
