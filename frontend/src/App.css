@@ -594,60 +594,587 @@ footer .logo-img{
   width: 100%;
 }
 
-/* Styling for Online Page */
-.online-page {
+/* ========== ONLINE CONSULTATION PAGE ========== */
+.online-page-new {
+  padding-top: 120px;
+  padding-bottom: 60px;
+  min-height: 100vh;
+}
+
+.online-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.online-hero h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #9083d5, #271776);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.online-hero p {
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* Tabs */
+.online-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.tab-btn {
+  padding: 12px 32px;
+  border: 2px solid #9083d5;
+  border-radius: 30px;
+  background: transparent;
+  color: #9083d5;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #9083d5, #271776);
+  color: #fff;
+  border-color: transparent;
+}
+
+.tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(144, 131, 213, 0.3);
+}
+
+.notification-dot {
+  width: 10px;
+  height: 10px;
+  background: #ff4444;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Doctor Cards Grid */
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.doctor-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s;
+  border: 1px solid #f0f0f0;
+}
+
+.doctor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(144, 131, 213, 0.15);
+}
+
+.doctor-avatar img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #9083d5;
+}
+
+.avatar-placeholder {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9083d5, #271776);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.doctor-info h3 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.department-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8e4f8, #d4cff0);
+  color: #5a4b9e;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Consultation Cards (Inbox) */
+.consultations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.consultation-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s;
+}
+
+.consultation-card:hover {
+  box-shadow: 0 8px 30px rgba(144, 131, 213, 0.12);
+}
+
+.consultation-left h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.consultation-datetime {
+  color: #666;
+  font-size: 14px !important;
+  margin-top: 8px;
+}
+
+.consultation-notes {
+  color: #888;
+  font-size: 13px !important;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.consultation-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.status-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-scheduled { background: #fff3cd; color: #856404; }
+.badge-active { background: #d4edda; color: #155724; animation: pulse 2s infinite; }
+.badge-completed { background: #e2e3e5; color: #383d41; }
+.badge-cancelled { background: #f8d7da; color: #721c24; }
+
+.join-btn {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.join-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  padding: 60px 20px;
+  font-size: 16px;
+}
+
+.login-prompt {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.login-prompt p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* ========== CONSULTATION ROOM ========== */
+.consultation-room {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #1a1a2e;
+  color: #fff;
+  overflow: hidden;
+}
+
+.consultation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #16213e;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.consultation-header-info h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.consultation-header-info .department-tag {
+  font-size: 12px;
+}
+
+.end-call-btn {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.end-call-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+}
+
+.leave-btn {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #666, #444);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.leave-btn:hover {
+  transform: scale(1.05);
+}
+
+.consultation-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Video Section */
+.video-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+}
+
+.video-container {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  position: relative;
+}
+
+.video-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #0f0f23;
+}
+
+.remote-video-wrapper {
+  flex: 3;
+}
+
+.local-video-wrapper {
+  flex: 1;
+  max-width: 280px;
+}
+
+.remote-video,
+.local-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #aaa;
+  font-size: 15px;
+}
+
+.local-placeholder {
+  background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+}
+
+.start-camera-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #9083d5, #271776);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.start-camera-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(144, 131, 213, 0.5);
+}
+
+.video-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #2a2a4a;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.control-btn:hover {
+  background: #3a3a5a;
+  transform: scale(1.1);
+}
+
+.control-btn.off {
+  background: #ff4444;
+}
+
+/* Chat Section */
+.chat-section {
+  flex: 1;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  background: #16213e;
+  border-left: 1px solid #2a2a4a;
+}
+
+.chat-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #2a2a4a;
+}
+
+.chat-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #3a3a5a;
+  border-radius: 4px;
+}
+
+.chat-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  position: relative;
+}
+
+.chat-msg.sent {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #9083d5, #6c5eb8);
+  border-bottom-right-radius: 4px;
+}
+
+.chat-msg.received {
+  align-self: flex-start;
+  background: #2a2a4a;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-sender {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.chat-text {
+  font-size: 14px !important;
+  color: #fff;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.chat-time {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  display: block;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.chat-input-form {
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  border-top: 1px solid #2a2a4a;
+}
+
+.chat-input-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 25px;
+  background: #2a2a4a;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.chat-input-form input::placeholder {
+  color: #888;
+}
+
+.chat-input-form button {
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #9083d5, #271776);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.chat-input-form button:hover {
+  transform: scale(1.05);
+}
+
+/* Loading State */
+.consultation-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #f9f9f9;
   height: 100vh;
-  text-align: center;
+  background: #1a1a2e;
+  color: #fff;
+  gap: 20px;
 }
 
-.online-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #2a2a4a;
+  border-top-color: #9083d5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
-.online-description {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 30px;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
-.book-appointment-button, .join-meeting-button {
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  background-color: #28a745;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 10px 0;
-  transition: background-color 0.3s ease;
+/* Responsive Consultation Room */
+@media (max-width: 900px) {
+  .consultation-body {
+    flex-direction: column;
+  }
+  .chat-section {
+    max-width: 100%;
+    max-height: 40vh;
+    border-left: none;
+    border-top: 1px solid #2a2a4a;
+  }
+  .video-container {
+    flex-direction: column;
+  }
+  .local-video-wrapper {
+    max-width: 100%;
+    max-height: 150px;
+  }
 }
 
-.book-appointment-button:hover, .join-meeting-button:hover {
-  background-color: #218838;
-}
-
-.already-booked-text {
-  font-size: 1rem;
-  color: #555;
-  margin: 20px 0;
-}
-
-.join-meeting-button {
-  background-color: #007bff;
-}
-
-.join-meeting-button:hover {
-  background-color: #0056b3;
+@media (max-width: 600px) {
+  .online-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  .consultation-card {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  .consultation-right {
+    align-items: center;
+  }
+  .doctors-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Existing styles here */

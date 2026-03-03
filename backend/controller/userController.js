@@ -4,6 +4,7 @@ import ErrorHandler from "../middlewares/errorMiddleware.js";
 import { generateToken } from "../utils/jwtToken.js";
 import cloudinary from "cloudinary";
 
+
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
   const { firstName, lastName, email, phone, nic, dob, gender, password } =
     req.body;
@@ -187,7 +188,7 @@ export const getAllDoctors = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
-// sourcery skip: use-object-destructuring
+  // sourcery skip: use-object-destructuring
   const user = req.user;
   res.status(200).json({
     success: true,
@@ -221,4 +222,35 @@ export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
       success: true,
       message: "Patient Logged Out Successfully.",
     });
+});
+
+// Logout function for doctor
+export const logoutDoctor = catchAsyncErrors(async (req, res, next) => {
+  res
+    .status(201)
+    .cookie("doctorToken", "", {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    })
+    .json({
+      success: true,
+      message: "Doctor Logged Out Successfully.",
+    });
+});
+
+// Search patients by email (for doctors to schedule consultations)
+export const searchPatients = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.query;
+  if (!email) {
+    return next(new ErrorHandler("Please provide an email to search!", 400));
+  }
+  const patients = await User.find({
+    role: "Patient",
+    email: { $regex: email, $options: "i" },
+  }).select("firstName lastName email phone");
+
+  res.status(200).json({
+    success: true,
+    patients,
+  });
 });

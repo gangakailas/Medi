@@ -4,6 +4,7 @@ export const dbConnection = () => {
   mongoose
     .connect(process.env.MONGO_URI, {
       dbName: "Appointment_Management_System",
+      family: 4,
     })
     .then(() => {
       console.log("Connected to database!");

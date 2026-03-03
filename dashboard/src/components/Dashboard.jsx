@@ -16,7 +16,7 @@ const Dashboard = () => {
     const fetchAppointments = async () => {
       try {
         const { data } = await axios.get(
-          "http://34.47.195.11/api/v1/appointment/getall",
+          "http://localhost:4000/api/v1/appointment/getall",
           { withCredentials: true }
         );
         setAppointments(data.appointments || []);
@@ -33,7 +33,7 @@ const Dashboard = () => {
   const handleUpdateStatus = async (appointmentId, status) => {
     try {
       const { data } = await axios.put(
-        `http://34.47.195.11/api/v1/appointment/update/${appointmentId}`,
+        `http://localhost:4000/api/v1/appointment/update/${appointmentId}`,
         { status },
         { withCredentials: true }
       );
@@ -110,9 +110,8 @@ const Dashboard = () => {
                     <td>
                       {appointment.appointment_date?.substring(0, 16) || "N/A"}
                     </td>
-                    <td>{`${appointment.doctor?.firstName || ""} ${
-                      appointment.doctor?.lastName || ""
-                    }`}</td>
+                    <td>{`${appointment.doctor?.firstName || ""} ${appointment.doctor?.lastName || ""
+                      }`}</td>
                     <td>{appointment.department || "N/A"}</td>
                     <td>
                       <select
@@ -120,8 +119,8 @@ const Dashboard = () => {
                           appointment.status === "Pending"
                             ? "value-pending"
                             : appointment.status === "Rejected"
-                            ? "value-rejected"
-                            : "value-accepted"
+                              ? "value-rejected"
+                              : "value-accepted"
                         }
                         value={appointment.status}
                         onChange={(e) =>

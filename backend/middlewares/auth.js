@@ -3,7 +3,7 @@ import { catchAsyncErrors } from "./catchAsyncErrors.js";
 import ErrorHandler from "./errorMiddleware.js";
 import jwt from "jsonwebtoken";
 
-// Middleware to authenticate dashboard users
+// Middleware to authenticate dashboard admin users
 export const isAdminAuthenticated = catchAsyncErrors(async (req, res, next) => {
   const token = req.cookies.adminToken;
   if (!token) {
@@ -22,7 +22,7 @@ export const isAdminAuthenticated = catchAsyncErrors(async (req, res, next) => {
   next();
 });
 
-// Middleware to authenticate frontend users
+// Middleware to authenticate frontend patient users
 export const isPatientAuthenticated = catchAsyncErrors(
   async (req, res, next) => {
     const token = req.cookies.patientToken;
@@ -42,6 +42,44 @@ export const isPatientAuthenticated = catchAsyncErrors(
     next();
   }
 );
+
+// Middleware to authenticate doctor users
+export const isDoctorAuthenticated = catchAsyncErrors(
+  async (req, res, next) => {
+    const token = req.cookies.doctorToken;
+    if (!token) {
+      return next(new ErrorHandler("Doctor is not authenticated!", 400));
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    req.user = await User.findById(decoded.id);
+    if (req.user.role !== "Doctor") {
+      return next(
+        new ErrorHandler(
+          `${req.user.role} not authorized for this resource!`,
+          403
+        )
+      );
+    }
+    next();
+  }
+);
+
+// Middleware to authenticate any user (patient, doctor, or admin)
+export const isAnyAuthenticated = catchAsyncErrors(async (req, res, next) => {
+  const token =
+    req.cookies.patientToken ||
+    req.cookies.doctorToken ||
+    req.cookies.adminToken;
+  if (!token) {
+    return next(new ErrorHandler("User is not authenticated!", 400));
+  }
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  req.user = await User.findById(decoded.id);
+  if (!req.user) {
+    return next(new ErrorHandler("User not found!", 404));
+  }
+  next();
+});
 
 export const isAuthorized = (...roles) => {
   return (req, res, next) => {

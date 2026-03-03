@@ -1,15 +1,18 @@
-import { StrictMode, createContext, useState} from 'react'
+import { Buffer } from 'buffer';
+window.Buffer = Buffer;
+
+import { StrictMode, createContext, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 
 export const Context = createContext({ isAuthenticated: false })
 
-const AppWrapper = ()=>{
+const AppWrapper = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
 
-  return(
-    <Context.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser}}>
+  return (
+    <Context.Provider value={{ isAuthenticated, setIsAuthenticated, user, setUser }}>
       <App />
     </Context.Provider>
   )
@@ -18,6 +21,6 @@ const AppWrapper = ()=>{
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AppWrapper/>  
+    <AppWrapper />
   </StrictMode>,
 )
